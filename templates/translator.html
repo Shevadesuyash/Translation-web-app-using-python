@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Translator</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+
+
+
+
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="contact-info">
+            <a href="mailto:shevadesuyash30@gmail.com">shevadesuyash30@gmail.com</a>
+        </div>
+        <div id="logo">
+            <h1>
+                <a onclick="window.location.href='/'">Translator</a>
+            </h1>
+        </div>
+
+        <nav>
+            <ul class="social-media">
+                <a onclick="window.location.href='/'">Home</a>
+
+                <li><a href="https://github.com/Shevadesuyash"> <img src="{{ url_for('static', filename='img/github.png') }}" alt="GitHub Account" class="social-icon"> </a></li>
+                <li><a href="https://www.instagram.com/shevadesuyash30/"> <img src="{{ url_for('static', filename='img/instagram.png') }}" alt="Instagram Account" class="social-icon"> </a></li>
+                <li><a href="https://www.linkedin.com/in/suyash-shevade-8b07a9236/"> <img src="{{ url_for('static', filename='img/linkedin.png') }}" alt="LinkedIn Account" class="social-icon"> </a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Translator Content Section -->
+    <!-- Your existing header code -->
+
+    <!-- Translator Form Section -->
+    <div id="translator">
+        <h2>Language Translator</h2>
+        <form id="translator-form">
+            <label for="fromLanguage">From Language:</label> <select
+                name="fromLanguage" id="fromLanguage">
+                <option value="auto">Auto Detect</option>
+                <option value="en">English</option>
+            </select> <label for="toLanguage">To Language:</label> <select
+                name="toLanguage" id="toLanguage">
+                <option value="ar">Arabic</option>
+                <option value="zh-CN">Chinese (Simplified)</option>
+                <option value="nl">Dutch</option>
+                <option value="en">English</option>
+                <option value="fi">Finnish</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+                <option value="el">Greek</option>
+                <option value="he">Hebrew</option>
+                <option value="hi">Hindi</option>
+                <option value="id">Indonesian</option>
+                <option value="it">Italian</option>
+                <option value="ja">Japanese</option>
+                <option value="ko">Korean</option>
+                <option value="ms">Malay</option>
+                <option value="mr">Marathi</option>
+                <option value="pt">Portuguese</option>
+                <option value="ru">Russian</option>
+                <option value="es">Spanish</option>
+                <option value="th">Thai</option>
+
+            </select> <label for="textToTranslate">Text to Translate:</label>
+            <textarea name="textToTranslate" rows="4" id="textToTranslate"></textarea>
+
+            <button type="submit" id="submit-button">Translate</button>
+
+        </form>
+
+        <label for="translatedText">Translated Text:</label>
+        <textarea id="translatedText" rows="4" readonly></textarea>
+
+        <label for="pronunciation">Pronunciation:</label>
+        <textarea id="pronunciation" rows="4" readonly></textarea>
+    </div>
+
+    <!-- Your existing footer code -->
+
+    <!-- JavaScript File -->
+
+
+
+
+    <!-- 
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+
+ -->
+
+    <script>
+        document.getElementById('translator-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+            submitForm();
+        });
+
+        function submitForm() {
+            var fromLanguage = document.getElementById('fromLanguage').value;
+            var toLanguage = document.getElementById('toLanguage').value;
+            var textToTranslate = document.getElementById('textToTranslate').value;
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        var translatedText = response.translated_text;
+                        var pronunciation = response.pronunciation;
+
+                        document.getElementById('translatedText').value = translatedText;
+                        document.getElementById('pronunciation').value = pronunciation;
+                    } else {
+                        // Handle errors
+                        console.error('Request failed with status:', xhr.status);
+                    }
+                }
+            };
+
+            xhr.open("POST", "/translate", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            var data = JSON.stringify({
+                "from_language": fromLanguage,
+                "to_language": toLanguage,
+                "text_to_translate": textToTranslate
+            });
+
+            xhr.send(data);
+        }
+    </script>
+</body>
+
+</html>

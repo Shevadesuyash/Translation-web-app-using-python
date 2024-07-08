@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Translator</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/css.css') }}">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="contact-info">
+            <a href="mailto:shevadesuyash30@gmail.com">shevadesuyash30@gmail.com</a>
+        </div>
+        <div id="logo">
+            <h1>
+                <a onclick="window.location.href='/'">Translator</a>
+            </h1>
+        </div>
+
+        <nav>
+            <ul class="social-media">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="https://www.instagram.com/shevadesuyash30/"><img src="{{ url_for('static', filename='img/instagram.png') }}" alt="Instagram Account" class="social-icon"></a></li>
+                <li><a href="https://www.linkedin.com/in/suyash-shevade-8b07a9236/"><img src="{{ url_for('static', filename='img/linkedin.png') }}" alt="LinkedIn Account" class="social-icon"></a></li>
+                <li><a href="https://github.com/Shevadesuyash"><img src="{{ url_for('static', filename='img/github.png') }}" alt="GitHub Account" class="social-icon"></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h1>Welcome to my Java Project</h1>
+        <p>This Java project is an exciting opportunity...</p>
+        <h3>You can try here your sentence translate into different language </h3>
+        <button onclick="window.location.href='translator.html'">Get Started</button>
+    </div>
+
+    <!-- Footer Section -->
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="about-me">
+                <h3>About Me</h3>
+                <p>
+                    Hello, my name is Suyash. I am an enthusiastic developer who is thrilled about software development and constantly seeking to learn new technologies. This Java project showcases my commitment to improving my skills and making valuable contributions to various projects.
+                </p>
+            </div>
+
+            <div class="about-project">
+                <h3>About the Project</h3>
+                <p>
+                    The "Translator" project is an impressive Java EE endeavor that showcases my expertise in Java programming and my adeptness in utilizing a range of technologies, including Servlets, JDBC, MySQL, and Python, to develop effective translation solutions.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Suaysh Shevade | Crystaltech Services Private Limited (Internship)</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
